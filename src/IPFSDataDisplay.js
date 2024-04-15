@@ -24,22 +24,27 @@ const IPFSDataDisplay = ({ ipfsHash }) => {
         if (ipfsHash) {
             fetchData();
         }
-    }, [ipfsHash]); // Re-run the effect if the ipfsHash prop changes
-
+    }, [ipfsHash]);
     if (error || data == null) {
-        return <div>Error: {error}</div>;
+        return <div ></div>;
     }
     console.log(data)
     const url = "https://ipfs.io/ipfs/".concat(data.image.split("//").pop())
 
 
     return (
-        <div>
-            <p>{data.name}</p>
+
+        <div >
+            <div >
+                <p>Name: {data.name}</p>
+                {data.amount && <p >Amount: {data.amount}</p>}
+            </div>
             <img
                 src={url}
+                alt={data.name}
             />
         </div>
+
     );
 };
 
